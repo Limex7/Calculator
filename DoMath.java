@@ -13,27 +13,27 @@ public class DoMath{
             String sub = Math.substring(i, i+1);
             switch (sub){
                 case "-":
-                    order.add(number);
+                    order.add(number.trim());
                     number = "";
                     order.add("s");
                     break;
                 case "+":
-                    order.add(number);
+                    order.add(number.trim());
                     number = "";
                     order.add("a");
                     break;
                 case "*":
-                    order.add(number);
+                    order.add(number.trim());
                     number = "";
                     order.add("m");
                     break;
                 case "/":
-                    order.add(number);
+                    order.add(number.trim());
                     number = "";
                     order.add("d");
                     break;
                 case "^":
-                    order.add(number);
+                    order.add(number.trim());
                     number = "";
                     order.add("e");
                     break;
@@ -42,7 +42,7 @@ public class DoMath{
                     break;
             }
         }
-        order.add(number); // this adds the last number 
+        order.add(number.trim()); // this adds the last number 
         System.out.println(order);
         return order;
     }
@@ -52,7 +52,7 @@ public class DoMath{
         BoringOperators bor = new BoringOperators(0, 0);
         Integer ans = 0;
         double answer = 0;
-        for (int i = 0; i < order.size(); i++){
+        while (order.contains("e") || order.contains("m") || order.contains("d") || order.contains("a") || order.contains("s")){
             if (order.contains("e")){
                 findMode = "ee"; //making it two long so that i can take more meaning for the other two
             }
