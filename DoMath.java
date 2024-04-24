@@ -51,6 +51,7 @@ public class DoMath{
         String findMode = "";
         BoringOperators bor = new BoringOperators(0, 0);
         Integer ans = 0;
+        double answer = 0;
         for (int i = 0; i < order.size(); i++){
             if (order.contains("e")){
                 findMode = "ee"; //making it two long so that i can take more meaning for the other two
@@ -64,10 +65,8 @@ public class DoMath{
             System.out.println(order);
             for (int j = 0; j < order.size(); j++){ // to find all of the operators in the calc
                 if (order.get(j).equals(findMode.substring(0, 1))){
-                    Integer A = Integer.parseInt(order.get(j-1));
-                    Integer B = Integer.parseInt(order.get(j+1));
-                    bor.setA(A);
-                    bor.setB(B);
+                    bor.setA(Integer.parseInt(order.get(j-1)));
+                    bor.setB(Integer.parseInt(order.get(j+1)));
                     switch (findMode.substring(0, 1)){
                         case "e":
                             ans = bor.exp();
@@ -81,18 +80,15 @@ public class DoMath{
 
                     }
                     order.set(j+1, Integer.toString(ans));
-                    order.remove(order.get(j-1));
-                    order.remove(order.get(j-1));
+                    order.remove(j-1); 
+                    order.remove(j-1);
                     if (!order.contains(findMode.substring(0, 1)) && !order.contains(findMode.substring(1, findMode.length()))){
                         break;
                     }
                 }
                 else if (order.get(j).equals(findMode.substring(1, findMode.length()))){
-                    System.out.println(j);
-                    Integer A = Integer.parseInt(order.get(j-1));
-                    Integer B = Integer.parseInt(order.get(j+1)); //check if moving these down breaks it or not
-                    bor.setA(A);
-                    bor.setB(B);
+                    bor.setA(Integer.parseInt(order.get(j-1)));
+                    bor.setB(Integer.parseInt(order.get(j+1)));
                     switch (findMode.substring(1, findMode.length())){
                         case "m":
                             ans = bor.mul();
@@ -103,14 +99,14 @@ public class DoMath{
 
                     }
                     order.set(j+1, Integer.toString(ans));
-                    order.remove(order.get(j-1));
-                    order.remove(order.get(j-1));
+                    order.remove(j-1); 
+                    order.remove(j-1);
                     if (!order.contains(findMode.substring(0, 1)) && !order.contains(findMode.substring(1, findMode.length()))){
                         break;
                     }
                 }
             }
         }
-        return 0; //test return value
+        return Integer.parseInt(order.get(0)); //test return value
     }
 }
